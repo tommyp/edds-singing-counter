@@ -1,0 +1,16 @@
+@import "typography";
+@import "design-patterns/buttons";
+
+#wrapper {
+  text-align: center;
+
+  h1 {
+    @include core-80;
+  }
+
+  .button {
+    @include button;
+    @include bold-24;
+    margin: 20px 0;
+  }
+}
