@@ -127,7 +127,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-rails (~> 4.0.0)
   govuk_frontend_toolkit
   jbuilder (~> 2.0)
   jquery-rails
