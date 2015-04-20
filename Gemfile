@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 
 gem 'govuk_frontend_toolkit'
 
+gem 'rake', '10.4.2'
+
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
