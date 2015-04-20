@@ -8,12 +8,12 @@ class Clock < ActiveRecord::Base
   end
 
   def self.previous_clocks
-    # previous_clocks = self.where("end_time")
-    # if previous_clocks.any?
-    #   previous_clocks.sort! { |a,b| a.end_time - a.created_at <=> b.end_time - a.created_at }
-    # else
+    previous_clocks = self.where("end_time IS NOT null")
+    if previous_clocks.any?
+      previous_clocks.to_a.sort! { |a,b| a.end_time - a.created_at <=> b.end_time - a.created_at }
+    else
       []
-    # end
+    end
   end
 
 end

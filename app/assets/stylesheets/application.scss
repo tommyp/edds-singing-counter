@@ -8,6 +8,19 @@
     @include core-80;
   }
 
+  h2 {
+    @include core-48;
+  }
+
+  ol {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  li {
+    @include core-27;
+  }
+
   .button {
     @include button;
     @include bold-24;

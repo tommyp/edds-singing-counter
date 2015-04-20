@@ -6,11 +6,11 @@ broke into song</h1>
 <%= link_to 'Reset', reset_path, class: 'button' %>
 
 <% if @clocks.any? %>
-  Longest times
-  <ul>
+  <h2>Longest times</h2>
+  <ol>
     <% @clocks.each do |clock| %>
       <li>
-        <% distance_of_time_in_words(clock.created_at, clock.end_time) %>
+        <%= distance_of_time_in_words(clock.created_at, clock.end_time) %>
       </li>
     <% end %>
   <ul>
