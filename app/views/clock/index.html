@@ -3,7 +3,7 @@
 since @edds last</br>
 broke into song</h1>
 
-<%= link_to 'Reset', reset_path, class: 'button' %>
+<%= link_to 'Reset', reset_path, class: 'button', method: 'put' %>
 
 <% if @clocks.any? %>
   <h2>Longest times</h2>

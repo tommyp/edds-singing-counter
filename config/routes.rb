@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'clock#index'
 
-  get '/reset' => 'clock#reset', as: :reset
+  put '/reset' => 'clock#reset', as: :reset
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
