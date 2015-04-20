@@ -1,11 +1,18 @@
 @import "typography";
 @import "design-patterns/buttons";
 
+body {
+  background: #000;
+  color: #fff;
+}
+
 #wrapper {
   text-align: center;
 
   h1 {
     @include core-80;
+    font-size: 100px;
+    margin: 20px 0;
   }
 
   h2 {
