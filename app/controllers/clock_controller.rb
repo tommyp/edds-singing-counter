@@ -15,7 +15,10 @@ class ClockController < ApplicationController
 
   def reset
     Clock.reset
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.json { render json: { status: 'OK' } }
+    end
   end
 
 end

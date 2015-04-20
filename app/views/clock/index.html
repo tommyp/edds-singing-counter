@@ -3,7 +3,9 @@
 <h2>since @edds last</br>
 broke into song</h2>
 
-<%= link_to 'Reset', reset_path, class: 'button', method: 'put' %>
+<%= form_tag(reset_path, method: 'put') do |f| %>
+  <%= button_tag 'Reset', class: 'button', id: 'reset' %>
+<% end %>
 
 <% if @clocks.any? %>
   <h2>Longest times</h2>
