@@ -1,20 +1,27 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+(function(){
+  "use strict";
 
-setTimeout(function(){
-   window.location.reload(1);
-}, 60000);
+  function ClockUpdater(){
+    this.updatedEl = document.getElementById('updated-at');
+    window.setInterval(this.get.bind(this), 1e3);
+  }
+  ClockUpdater.prototype = {
+    get: function(){
+      var request = new XMLHttpRequest(),
+          callback = this.update.bind(this);
+      request.onreadystatechange = function () {
+        if (this.readyState === 4){
+          var json = JSON.parse(request.responseText);
+          callback(json);
+        }
+      };
+      request.open('GET', 'index.json', true);
+      request.send(null);
+    },
+    update: function(data){
+      this.updatedEl.innerText = data.updated_at;
+    }
+  };
+
+  window.clockUpdater = new ClockUpdater();
+}());
