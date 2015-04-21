@@ -1,20 +1,52 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+(function(){
+  "use strict";
 
-setTimeout(function(){
-   window.location.reload(1);
-}, 60000);
+  function ClockUpdater(){
+    this.createdEl = document.getElementById('created-at');
+    window.setInterval(this.get.bind(this), 10e3);
+
+    this.resetEl = document.getElementById('reset');
+    this.resetEl.addEventListener('click', this.reset.bind(this), false);
+  }
+  ClockUpdater.prototype = {
+    get: function(){
+      var request = new XMLHttpRequest(),
+          callback = this.update.bind(this);
+      request.onreadystatechange = function () {
+        if (this.readyState === 4){
+          var json = JSON.parse(request.responseText);
+          callback(json);
+        }
+      };
+      request.open('GET', 'index.json', true);
+      request.send(null);
+    },
+    update: function(data){
+      this.createdEl.innerText = data.created_at;
+    },
+    reset: function(e){
+      e.preventDefault();
+      var request = new XMLHttpRequest(),
+          callback = this.get.bind(this);
+
+      request.onreadystatechange = function () {
+        if (this.readyState === 4){
+          callback();
+        }
+      };
+      request.open('PUT', '/reset.json', true);
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      request.send('authenticity_token=' + this.authToken());
+    },
+    authToken: function(){
+      var inputs = document.getElementsByTagName('input'), input;
+      for(input in inputs){
+        if(inputs[input].getAttribute('name') === 'authenticity_token'){
+          return inputs[input].getAttribute('value');
+        }
+      }
+    }
+  };
+
+  window.clockUpdater = new ClockUpdater();
+}());
