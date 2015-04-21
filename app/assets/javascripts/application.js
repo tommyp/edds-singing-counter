@@ -2,7 +2,7 @@
   "use strict";
 
   function ClockUpdater(){
-    this.updatedEl = document.getElementById('updated-at');
+    this.createdEl = document.getElementById('created-at');
     window.setInterval(this.get.bind(this), 10e3);
 
     this.resetEl = document.getElementById('reset');
@@ -22,7 +22,7 @@
       request.send(null);
     },
     update: function(data){
-      this.updatedEl.innerText = data.updated_at;
+      this.createdEl.innerText = data.created_at;
     },
     reset: function(e){
       e.preventDefault();

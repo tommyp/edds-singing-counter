@@ -7,7 +7,7 @@ class JsonClockPresenter
 
   def to_hash
     {
-      updated_at: distance_of_time_in_words_to_now(clock.created_at)
+      created_at: distance_of_time_in_words_to_now(clock.created_at)
     }
   end
 
