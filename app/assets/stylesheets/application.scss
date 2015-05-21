@@ -9,10 +9,6 @@ body {
 #wrapper {
   text-align: center;
 
-  h1, h2, a, li {
-    font-family: nta;
-  }
-
   h1 {
     @include core-80;
     font-size: 100px;
