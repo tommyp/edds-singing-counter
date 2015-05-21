@@ -8,7 +8,7 @@ broke into song</h2>
 <% end %>
 
 <% if @chart_hits.any? %>
-  <h2>@edds' latest top 5</h2>
+  <h2 id="chart">@edds' recent hits</h2>
   <ol>
     <% @chart_hits.each do |clock| %>
       <li>
