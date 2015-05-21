@@ -5,7 +5,7 @@ class ClockController < ApplicationController
     if @clock.blank?
       @clock = Clock.create
     end
-    @clocks = Clock.previous_clocks
+    @greatest_hits = Clock.greatest_hits
 
     respond_to do |format|
       format.html

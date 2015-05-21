@@ -7,10 +7,10 @@ broke into song</h2>
   <%= button_tag 'Reset', class: 'button', id: 'reset' %>
 <% end %>
 
-<% if @clocks.any? %>
-  <h2>Longest times</h2>
+<% if @greatest_hits.any? %>
+  <h2>@edds' greatest hits</h2>
   <ol>
-    <% @clocks.each do |clock| %>
+    <% @greatest_hits.each do |clock| %>
       <li>
         <%= distance_of_time_in_words(clock.created_at, clock.end_time) %>
       </li>
